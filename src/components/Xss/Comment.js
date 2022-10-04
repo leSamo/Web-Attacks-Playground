@@ -2,15 +2,15 @@ import { Card, CardBody, Split, SplitItem } from '@patternfly/react-core';
 import React from 'react';
 import RatingPanel from './RatingPanel';
 
-const Comment = ({ username, content, points, hasUpvoted, hasDownvoted }) => {
+const Comment = ({ username, content, points, hasUpvoted, hasDownvoted, voteUp, voteDown }) => {
     return (
         <Card style={{ marginBottom: 16 }}>
             <CardBody>
                 <Split style={{ width: "100%" }}>
                     <SplitItem>
-                        <RatingPanel points={points} hasUpvoted={hasUpvoted} hasDownvoted={hasDownvoted} />
+                        <RatingPanel points={points} hasUpvoted={hasUpvoted} hasDownvoted={hasDownvoted} voteUp={voteUp} voteDown={voteDown} />
                     </SplitItem>
-                    <SplitItem style={{ fontSize: 20, width: "100%" }}>
+                    <SplitItem style={{ fontSize: 16, width: "100%" }}>
                         <Split>
                             <SplitItem>
                                 {username}
