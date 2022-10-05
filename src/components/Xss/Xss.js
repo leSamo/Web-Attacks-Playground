@@ -36,44 +36,40 @@ const Xss = () => {
 
     return (
         <Card>
-            <CardHeader>
-                <TextContent>
-                    <Text component="h2">
-                        Discussion
-                    </Text>
-                </TextContent>
-            </CardHeader>
             <CardBody>
                 <TextContent>
-                <Stack hasGutter>
-                    {comments.map(({ username, content, points, hasUpvoted, hasDownvoted }, index) => 
-                        <Comment
-                            key={index}
-                            username={username}
-                            content={<VulnerableHtmlInjector html={content} />}
-                            points={points + Number(hasUpvoted) - Number(hasDownvoted)}
-                            hasDownvoted={hasDownvoted}
-                            hasUpvoted={hasUpvoted}
-                            voteUp={() => setComments(Object.assign([], comments, {[index]: {...comments[index], hasUpvoted: true, hasDownvoted: false}}))}
-                            voteDown={() => setComments(Object.assign([], comments, {[index]: {...comments[index], hasUpvoted: false, hasDownvoted: true}}))}
-                        />
-                    )}
+                    <Text component="h1">
+                        Discussion
+                    </Text>
+                    <Stack hasGutter>
+                        {comments.map(({ username, content, points, hasUpvoted, hasDownvoted }, index) =>
+                            <Comment
+                                key={index}
+                                username={username}
+                                content={<VulnerableHtmlInjector html={content} />}
+                                points={points + Number(hasUpvoted) - Number(hasDownvoted)}
+                                hasDownvoted={hasDownvoted}
+                                hasUpvoted={hasUpvoted}
+                                voteUp={() => setComments(Object.assign([], comments, { [index]: { ...comments[index], hasUpvoted: true, hasDownvoted: false } }))}
+                                voteDown={() => setComments(Object.assign([], comments, { [index]: { ...comments[index], hasUpvoted: false, hasDownvoted: true } }))}
+                            />
+                        )}
 
-                    <StackItem style={{ marginTop: 32 }}>
-                        <Text component={TextVariants.h6}>
-                            Add a new comment
-                        </Text>
-                        <TextArea
-                            value={newCommentValue}
-                            onChange={value => setNewCommentValue(value)}
-                            resizeOrientation="vertical"
-                            aria-label="comment"
-                            style={{ minHeight: 60 }}
-                            placeholder="Type comment..."
-                        />
-                        <Button style={{ marginTop: 16 }} variant="primary" isDisabled={newCommentValue.length === 0} onClick={addNewComment}>Submit comment</Button>
-                    </StackItem>
-                </Stack>
+                        <StackItem style={{ marginTop: 32 }}>
+                            <Text component={TextVariants.h6}>
+                                Add a new comment
+                            </Text>
+                            <TextArea
+                                value={newCommentValue}
+                                onChange={value => setNewCommentValue(value)}
+                                resizeOrientation="vertical"
+                                aria-label="comment"
+                                style={{ minHeight: 60 }}
+                                placeholder="Type comment..."
+                            />
+                            <Button style={{ marginTop: 16 }} variant="primary" isDisabled={newCommentValue.length === 0} onClick={addNewComment}>Submit comment</Button>
+                        </StackItem>
+                    </Stack>
                 </TextContent>
             </CardBody>
         </Card>
