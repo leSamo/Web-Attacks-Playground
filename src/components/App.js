@@ -13,7 +13,7 @@ import { Button, Card, CardBody, CodeBlock, CodeBlockCode, Split, SplitItem, Tab
 import { ArrowRightIcon } from '@patternfly/react-icons';
 
 const App = () => {
-  const paths = {
+  const PATHS = {
     "/clickjacking": {
       tabName: "Clickjacking"
     },
@@ -41,23 +41,39 @@ const App = () => {
     },
     "/missingServerSideValidation": {
       tabName: "Missing server-side validation",
-      component: <Validation />
-    }
+      component: <Validation />,
+      attackDescription: <p>Placeholder.</p>,
+      tryItYourself: <p>This website is missing server-side validation, try to exploit this vulnerability by registering the &quot;Cookbook website&quot; project variant</p>,
+      solution: <p>This website tries to prevent students from registering project variant by disabling buttons until registration is open for everyone. However disabled buttons on the client-side can easily be enabled using the developer console by removing the <tt>disabled</tt> attribute from <tt>&lt;button&gt;</tt> element. If the reliance is completely on client-side with no server-side validation whatsoever, vulnerability might be easily exploitable.</p>,
+      howToPrevent: <p>Placeholder.</p>
+    },
   }
 
   const [activeTab, setActiveTab] = useState(0);
+
+  const goToNextVulnerability = () => {
+    const keys = Object.keys(PATHS);
+    let currentPath = window.location.pathname;
+    currentPath = currentPath.substring(0, currentPath.length - 1);
+
+    const nextIndex = keys.indexOf(currentPath) + 1;
+    const nextItem = keys[nextIndex];
+
+    //console.log(window.location.pathname, keys, nextIndex, nextItem);
+    window.location = nextItem;
+  }
 
   return (
     <Router>
       <Switch>
         <Route exact path="/" key={0}>
-          <Wrapper navIndex={0} paths={paths}>
+          <Wrapper navIndex={0} paths={PATHS}>
             <IndexPage />
           </Wrapper>
         </Route>
-        {Object.entries(paths).map(([urlPath, { tabName, component, attackDescription, tryItYourself, solution, howToPrevent }], index) =>
+        {Object.entries(PATHS).map(([urlPath, { tabName, component, attackDescription, tryItYourself, solution, howToPrevent }], index) =>
           <Route exact path={urlPath} key={index + 1}>
-            <Wrapper navIndex={index + 1} paths={paths}>
+            <Wrapper navIndex={index + 1} paths={PATHS}>
               <Split style={{ minHeight: "100%" }}>
                 <SplitItem style={{ width: 500 }}>
                   <Card style={{ minHeight: "100%" }}>
@@ -124,6 +140,11 @@ const App = () => {
                               {howToPrevent}
                             </Text>
                           </TextContent>
+                          {index !== Object.keys(PATHS).length - 1 &&
+                            <Button style={{ marginTop: 16 }} variant="primary" isLarge onClick={goToNextVulnerability}>
+                              See the next vulnerability <ArrowRightIcon />
+                            </Button>
+                          }
                         </Tab>
                       </Tabs>
                     </CardBody>
@@ -137,7 +158,7 @@ const App = () => {
           </Route>
         )}
       </Switch>
-    </Router>
+    </Router >
   )
 }
 

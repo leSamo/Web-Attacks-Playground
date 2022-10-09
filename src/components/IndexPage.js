@@ -18,6 +18,16 @@ const IndexPage = () => {
                     <Text component="p">
                     Aliquam facilisis interdum mi eget condimentum. Integer rhoncus pharetra volutpat. Praesent pharetra pretium pellentesque. Nulla faucibus dictum arcu vel auctor. Praesent cursus orci in turpis rutrum, et mattis lorem commodo. Donec consectetur sem nunc, sed facilisis nunc laoreet vestibulum. Fusce convallis pharetra felis condimentum dignissim. Proin cursus tempus magna, ut convallis tortor ultricies sit amet. Ut egestas purus ac convallis molestie. In posuere interdum pulvinar. Proin augue justo, sodales ac auctor consectetur, gravida non ipsum. Morbi id pellentesque est. Sed tempus, nisi et ornare gravida, sapien nulla egestas quam, eu venenatis nulla ex non enim. Morbi eu iaculis nisl, sit amet ornare sem. Nullam suscipit vitae ex eu luctus. Mauris luctus sit amet massa consectetur condimentum.
                     </Text>
+                    <Text component="h1">
+                        TODO:
+                    </Text>
+                    <Text component="p">
+                        <ul>
+                            <li>Reset button</li>
+                            <li>Browser detection with red banner warning users they are using incompatible browser</li>
+                            <li>PF notification</li>
+                        </ul>
+                    </Text>
                 </TextContent>
             </CardBody>
         </Card>
