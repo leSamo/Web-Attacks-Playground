@@ -2,11 +2,8 @@ import { Alert, Card, CardBody, Menu, MenuContent, MenuItem, MenuList, Split, Sp
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInbox, faPaperPlane, faPencil, faReply, faStar, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { dbExecute } from '../../db';
 
 const Csrf = () => {
-    dbExecute();
-
     return (
         <Card>
             <CardBody>

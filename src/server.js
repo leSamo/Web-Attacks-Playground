@@ -1,5 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const { dbExecute } = require('./db');
 
 const app = express();
 const port = process?.env?.PORT || 5000;
@@ -18,3 +20,10 @@ app.get('/manifest.json', (req, res) => {
 
 app.use('/', express.static('./build'));
 app.use('/*', express.static('./build'));
+
+app.get('/sql', async (req, res) => {
+  //const result = await dbExecute(req.query)
+  const result = await dbExecute("SELECT * FROM passwords;");
+
+  res.send(result.rows);
+});

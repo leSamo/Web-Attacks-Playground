@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, CardBody, CardHeader, Stack, StackItem, Text, TextArea, TextContent, TextVariants } from '@patternfly/react-core';
+import { Button, Card, CardBody, Stack, StackItem, Text, TextArea, TextContent, TextVariants } from '@patternfly/react-core';
 import Comment from './Comment';
 import VulnerableHtmlInjector from 'dangerously-set-html-content'
 
