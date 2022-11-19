@@ -6,16 +6,19 @@ const dbExecute = async (query, values = [], callback = () => {}) => {
         ssl: false
     });
 
-    console.log(process.env.DATABASE_URL);
-
     await client.connect()
 
-    return client.query(query, values).then((res) => {
-        callback(res);
-
-        client.end()
-        return res;
-    });
+    try {
+        return client.query(query, values).then((res) => {
+            callback(res);
+    
+            client.end()
+            return res;
+        });
+    }
+    catch (e) {
+        return e;
+    }
 }
 
 module.exports = { dbExecute };

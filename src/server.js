@@ -20,8 +20,19 @@ app.get('/manifest.json', (req, res) => {
 
 
 app.get('/sql', async (req, res) => {
-  //const result = await dbExecute(req.query)
-  const result = await dbExecute("SELECT * FROM passwords;");
+  let result;
+
+  try {
+    result = await dbExecute(req.query.sql);
+  }
+  catch (e) {
+    console.log(e);
+    result = {
+      rows: []
+    };
+  }
+
+  console.log(result.rows);
   
   res.send(result.rows);
 });

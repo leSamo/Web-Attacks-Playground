@@ -20,3 +20,4 @@ globals:
   __dirname: true
   process: true
   require: true
+  module: true
