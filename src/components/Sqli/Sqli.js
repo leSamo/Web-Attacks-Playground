@@ -39,10 +39,14 @@ const Sqli = () => {
                             type="text"
                             onChange={value => setSearchValue(value)}
                             style={{ width: 700 }}
+                            placeholder="Search by item description..."
                         />
                     </SplitItem>
                     <SplitItem>
                         <Button variant="primary" onClick={() => query(searchValue)}>Search</Button>
+                    </SplitItem>
+                    <SplitItem>
+                        <Button variant="secondary" onClick={() => {setSearchValue(""); query("")}}>Reset</Button>
                     </SplitItem>
                 </Split>
 

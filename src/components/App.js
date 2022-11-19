@@ -19,7 +19,18 @@ const App = () => {
   const PATHS = {
     "/sqlInjection": {
       tabName: "SQL injection",
-      component: <Sqli />
+      component: <Sqli />,
+      tryItYourself: "This is a searchable list of items in Hardware store of your rival. Try to find a way to access admin account, so you can sabotage its operations.",
+      solution: <p>
+      Search input field is missing proper input validation and therefore can be used as an attack vector. Input field contents are injected into database query regardless of its content. The query might look something like this:
+      <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
+        <CodeBlockCode id="code-content">{"SELECT * FROM items WHERE title = '<USER_INPUT>';"}</CodeBlockCode>
+      </CodeBlock>
+      By maliciously crafting a query we can abuse this oversight and access contents of other tables in database. Try entering <b><code>'; --</code></b> into the input field. This will malform the query into:
+      <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
+        <CodeBlockCode id="code-content">{"SELECT * FROM items WHERE title = '';"} <span style={{ color: '#989898' }}>--';</span></CodeBlockCode>
+      </CodeBlock>
+      </p>
     },
     "/bruteforce": {
       tabName: "Bruteforce",
@@ -30,7 +41,8 @@ const App = () => {
       component: <Xss />,
       attackDescription: <p>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user.</p>,
       tryItYourself: <p>Try to inject such JavaScipt code into the page that shows a modal window with text &quot;XSS attack&quot;.</p>,
-      solution: <p>This website contains a text area where users can enter a new comment and post it. It supports HTML tags so users can format their comments. Implementation of this feature is vulnerable to XSS attacks, as it does not check which HTML tags are used. In particular, script tag can be used to execute JavaScript code on other users&#39; devices. Paste the following HTML code snippet into new comment text area and submit the comment.<CodeBlock style={{ marginTop: 16 }}>
+      solution: <p>This website contains a text area where users can enter a new comment and post it. It supports HTML tags so users can format their comments. Implementation of this feature is vulnerable to XSS attacks, as it does not check which HTML tags are used. In particular, script tag can be used to execute JavaScript code on other users&#39; devices. Paste the following HTML code snippet into new comment text area and submit the comment.
+      <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
         <CodeBlockCode id="code-content">{"<script>alert(\"XSS attack\")</script>"}</CodeBlockCode>
       </CodeBlock></p>,
       howToPrevent: <p>The primary defenses against XSS are described in the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP XSS Prevention Cheat Sheet</a>. Also, it’s crucial that you turn off HTTP TRACE support on all web servers. An attacker can steal cookie data via Javascript even when document.cookie is disabled or not supported by the client.</p>
@@ -38,9 +50,6 @@ const App = () => {
     "/csrf": {
       tabName: "CSRF",
       component: <Csrf/>
-    },
-    "/sessionHijacking": {
-      tabName: "Session hijacking"
     },
     "/missingServerSideValidation": {
       tabName: "Missing server-side validation",
