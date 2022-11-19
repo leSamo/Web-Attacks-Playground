@@ -11,6 +11,7 @@ import Xss from './Xss/Xss';
 import Validation from './Validation/Validation';
 import { Button, Card, CardBody, CodeBlock, CodeBlockCode, Split, SplitItem, Tab, Tabs, Text, TextContent } from '@patternfly/react-core';
 import { ArrowRightIcon } from '@patternfly/react-icons';
+import Csrf from './Csrf/Csrf';
 
 const App = () => {
   const PATHS = {
@@ -25,13 +26,14 @@ const App = () => {
       component: <Xss />,
       attackDescription: <p>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user.</p>,
       tryItYourself: <p>Try to inject such JavaScipt code into the page that shows a modal window with text &quot;XSS attack&quot;.</p>,
-      solution: <p>This website contains a text area where users can enter a new comment and post it. It supports HTML tags so users can format their comments. Implementation of this feature is vulnerable to XSS attacks, as it does not check which HTML tags are used. In particular, script tag can be used to execute JavaScript code on other users&#39; devices. Paste the following HTML code snippet into new comment text area and submit the comment.<CodeBlock>
+      solution: <p>This website contains a text area where users can enter a new comment and post it. It supports HTML tags so users can format their comments. Implementation of this feature is vulnerable to XSS attacks, as it does not check which HTML tags are used. In particular, script tag can be used to execute JavaScript code on other users&#39; devices. Paste the following HTML code snippet into new comment text area and submit the comment.<CodeBlock style={{ marginTop: 16 }}>
         <CodeBlockCode id="code-content">{"<script>alert(\"XSS attack\")</script>"}</CodeBlockCode>
       </CodeBlock></p>,
       howToPrevent: <p>The primary defenses against XSS are described in the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP XSS Prevention Cheat Sheet</a>. Also, it’s crucial that you turn off HTTP TRACE support on all web servers. An attacker can steal cookie data via Javascript even when document.cookie is disabled or not supported by the client.</p>
     },
-    "/crsf": {
-      tabName: "CRSF"
+    "/csrf": {
+      tabName: "CSRF",
+      component: <Csrf/>
     },
     "/phishing": {
       tabName: "Phishing"
