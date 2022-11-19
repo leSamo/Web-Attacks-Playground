@@ -12,6 +12,7 @@ import Validation from './Validation/Validation';
 import { Button, Card, CardBody, CodeBlock, CodeBlockCode, Split, SplitItem, Tab, Tabs, Text, TextContent } from '@patternfly/react-core';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import Csrf from './Csrf/Csrf';
+import Sqli from './Sqli/Sqli';
 
 const App = () => {
   const PATHS = {
@@ -19,7 +20,8 @@ const App = () => {
       tabName: "Clickjacking"
     },
     "/sqlInjection": {
-      tabName: "SQL injection"
+      tabName: "SQL injection",
+      component: <Sqli />
     },
     "/xss": {
       tabName: "XSS (Cross site scripting)",

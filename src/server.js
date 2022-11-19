@@ -18,12 +18,16 @@ app.get('/manifest.json', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/manifest.json'));
 });
 
-app.use('/', express.static('./build'));
-app.use('/*', express.static('./build'));
 
 app.get('/sql', async (req, res) => {
   //const result = await dbExecute(req.query)
   const result = await dbExecute("SELECT * FROM passwords;");
-
+  
   res.send(result.rows);
 });
+
+
+app.use('/', express.static('./build'));
+
+// the following line must be defined after all of the other routes are defined
+app.use('/*', express.static('./build'));
