@@ -13,15 +13,17 @@ import { Button, Card, CardBody, CodeBlock, CodeBlockCode, Split, SplitItem, Tab
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import Csrf from './Csrf/Csrf';
 import Sqli from './Sqli/Sqli';
+import Bruteforce from './Bruteforce/Bruteforce';
 
 const App = () => {
   const PATHS = {
-    "/clickjacking": {
-      tabName: "Clickjacking"
-    },
     "/sqlInjection": {
       tabName: "SQL injection",
       component: <Sqli />
+    },
+    "/bruteforce": {
+      tabName: "Bruteforce",
+      component: <Bruteforce />
     },
     "/xss": {
       tabName: "XSS (Cross site scripting)",
@@ -36,9 +38,6 @@ const App = () => {
     "/csrf": {
       tabName: "CSRF",
       component: <Csrf/>
-    },
-    "/phishing": {
-      tabName: "Phishing"
     },
     "/sessionHijacking": {
       tabName: "Session hijacking"

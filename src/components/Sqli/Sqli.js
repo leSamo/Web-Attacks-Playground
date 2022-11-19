@@ -1,7 +1,9 @@
-import { Alert, Button, Card, CardBody, Split, SplitItem, Text, TextContent, TextInput } from '@patternfly/react-core';
+import { Button, Card, CardBody, Split, SplitItem, Text, TextContent, TextInput } from '@patternfly/react-core';
 import { TableComposable, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+
+// TODO add reset search button
 
 const Sqli = () => {
     const [searchValue, setSearchValue] = useState("");
@@ -36,7 +38,6 @@ const Sqli = () => {
                             value={searchValue}
                             type="text"
                             onChange={value => setSearchValue(value)}
-                            aria-label="error icon sprite text input example"
                             style={{ width: 700 }}
                         />
                     </SplitItem>
