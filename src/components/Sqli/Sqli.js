@@ -32,7 +32,7 @@ const Sqli = () => {
                         Hardware store
                     </Text>
                 </TextContent>
-                <Split hasGutter style={{ marginTop: 16 }}>
+                <Split hasGutter style={{ marginTop: 24, marginBottom: 24 }}>
                     <SplitItem>
                         <TextInput
                             value={searchValue}
