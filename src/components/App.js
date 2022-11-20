@@ -18,11 +18,17 @@ import Bruteforce from './Bruteforce/Bruteforce';
 const App = () => {
   const PATHS = {
     "/csrf": {
-      tabName: "CSRF",
-      component: <Csrf />
+      tabName: "CSRF (Cross-site request forgery)",
+      component: <Csrf />,
+      attackDescription: <p>TODO</p>,
+      tryItYourself: <p>You have received a suspicious e-mail which mentions that your password has been changed, but you don't remember doing that.The suspicious e-mail cointans a link "Password reset". You don't think the e-mail is legit, but you click the button out of curiosity. What could go wrong?</p>,
+      solution: <p>Click the "Password reset" button inside the e-mail. The link redirected you to password reset page, but something is wrong.
+        There is a notification telling you that password has just been changed successfully. The attacker crafted a malicious link that submitted password change request on your behalf and because you were logged into your account, the browser injected your authentification token into the request.
+      </p>,
+      howToPrevent: <p>TODO</p>
     },
     "/xss": {
-      tabName: "XSS (Cross site scripting)",
+      tabName: "XSS (Cross-site scripting)",
       component: <Xss />,
       attackDescription: <Fragment><p>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user.</p><p>
         An attacker can use XSS to send a malicious script to an unsuspecting user. The end user’s browser has no way to know that the script should not be trusted, and will execute the script. Because it thinks the script came from a trusted source, the malicious script can access any cookies, session tokens, or other sensitive information retained by the browser and used with that site. These scripts can even rewrite the content of the HTML page.
