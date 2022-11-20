@@ -54,7 +54,6 @@ const Bruteforce = () => {
                                             <Button variant="primary" onClick={validate} id="submit">Submit</Button>
                                         </Bullseye>
                                     </StackItem>
-
                                 </Fragment>
                             )}
                     </Stack>

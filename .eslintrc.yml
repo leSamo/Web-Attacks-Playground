@@ -16,6 +16,7 @@ rules:
   no-useless-escape: 0
   react/jsx-key: 1
   react/prop-types: 0
+  react/no-unescaped-entities: 0
 globals:
   __dirname: true
   process: true
