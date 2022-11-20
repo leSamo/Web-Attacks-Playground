@@ -1,34 +1,43 @@
 import React from 'react';
-import { Card, CardBody, Text, TextContent } from '@patternfly/react-core';
+import { Button, Card, CardBody, Text, TextContent } from '@patternfly/react-core';
+import { ArrowRightIcon } from '@patternfly/react-icons';
 
 const IndexPage = () => {
+    const goToFirstVulnerability = () => {
+        window.location = "/sqlInjection";
+      }
+
     return (
         <Card>
             <CardBody>
                 <TextContent>
                     <Text component="h1">
-                        What is this
+                        Web attack playground
                     </Text>
                     <Text component="p">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer convallis turpis eget suscipit ultrices. Vivamus bibendum, ligula vel feugiat vulputate, eros nibh egestas elit, nec volutpat mi eros sodales sapien. Maecenas vitae nulla ac arcu molestie aliquet quis vel quam. Cras luctus ex nec dictum scelerisque. Proin ante urna, faucibus vehicula scelerisque eget, vulputate a purus. Fusce aliquam mattis lorem id cursus. Duis molestie efficitur libero, semper gravida enim ultricies eget. Nunc dapibus nisl massa, sed imperdiet nulla consequat id. Duis ultricies sollicitudin eros accumsan luctus. Vestibulum pretium congue felis ac rhoncus.
+                        Web app which has web vulnerabilites embedded with guides with gamification elements on how to exploit them. Goal of this app and paper is to present these vulnerabilities in a user-friendly way and enable hands-on approach how to identify them to raise awareness of these issues.                   
                     </Text>
-                    <Text component="h1">
+                    <Text component="h2">
                         How it works
                     </Text>
                     <Text component="p">
-                    Aliquam facilisis interdum mi eget condimentum. Integer rhoncus pharetra volutpat. Praesent pharetra pretium pellentesque. Nulla faucibus dictum arcu vel auctor. Praesent cursus orci in turpis rutrum, et mattis lorem commodo. Donec consectetur sem nunc, sed facilisis nunc laoreet vestibulum. Fusce convallis pharetra felis condimentum dignissim. Proin cursus tempus magna, ut convallis tortor ultricies sit amet. Ut egestas purus ac convallis molestie. In posuere interdum pulvinar. Proin augue justo, sodales ac auctor consectetur, gravida non ipsum. Morbi id pellentesque est. Sed tempus, nisi et ornare gravida, sapien nulla egestas quam, eu venenatis nulla ex non enim. Morbi eu iaculis nisl, sit amet ornare sem. Nullam suscipit vitae ex eu luctus. Mauris luctus sit amet massa consectetur condimentum.
+                        In each task, you will be presented with a different vulnerable website and an assignment. Description of the vulnerability to use is available. Use the vulnerability inside the website to complete the assignment. If you ever get stuck there is a step by step guide to each task, in the "Solution" tab. Read "Prevention" tab to find out how could this vulnerability have been avoided.
                     </Text>
-                    <Text component="h1">
-                        TODO:
+                    <Text component="h2">
+                        Recommendations
                     </Text>
                     <Text component="p">
                         <ul>
-                            <li>Reset button</li>
-                            <li>Browser detection with red banner warning users they are using incompatible browser</li>
-                            <li>PF notification</li>
+                            <li>
+                                Please use Google Chrome or Firefox browser, other browser might not work correctly.
+                            </li>
                         </ul>
                     </Text>
                 </TextContent>
+
+                <Button style={{ marginTop: 32 }} variant="primary" isLarge onClick={goToFirstVulnerability}>
+                    Go to your first task <ArrowRightIcon />
+                </Button>
             </CardBody>
         </Card>
     );

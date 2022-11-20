@@ -154,7 +154,7 @@ const App = () => {
                           </TextContent>
                           {index !== Object.keys(PATHS).length - 1 &&
                             <Button style={{ marginTop: 16 }} variant="primary" isLarge onClick={goToNextVulnerability}>
-                              See the next vulnerability <ArrowRightIcon />
+                              See the next task <ArrowRightIcon />
                             </Button>
                           }
                         </Tab>

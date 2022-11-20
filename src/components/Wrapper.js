@@ -22,7 +22,7 @@ const Wrapper = ({ navIndex, paths, children }) => {
 					Introduction
 				</NavItem>
 			</NavGroup>
-			<NavGroup title="Attacks">
+			<NavGroup title="Tasks">
 				{Object.entries(paths).map(([urlPath, {tabName}], index) =>
 					<NavItem key={index} to={urlPath} itemId={index + 1} isActive={navIndex === index + 1}>
 						{tabName}
