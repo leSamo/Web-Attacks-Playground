@@ -2,7 +2,7 @@ import { Card, CardBody, Split, SplitItem } from '@patternfly/react-core';
 import React from 'react';
 import RatingPanel from './RatingPanel';
 
-const Comment = ({ username, content, points, hasUpvoted, hasDownvoted, voteUp, voteDown }) => {
+const Comment = ({ username, content, points, hasUpvoted, hasDownvoted, voteUp, voteDown, date }) => {
     return (
         <Card style={{ marginBottom: 16 }}>
             <CardBody>
@@ -14,7 +14,7 @@ const Comment = ({ username, content, points, hasUpvoted, hasDownvoted, voteUp, 
                         <Split>
                             <SplitItem>
                                 {username}
-                                <span style={{ color: 'gray' }}> • {new Date().toLocaleString("cs-CZ")}</span> <br />
+                                <span style={{ color: 'gray' }}> • {date ? new Date(date).toLocaleString("cs-CZ") : "Just now"}</span> <br />
                                 <p style={{ marginTop: 8, fontSize: 16 }}>{content}</p>
                             </SplitItem>
                             <SplitItem isFilled />
