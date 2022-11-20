@@ -165,10 +165,11 @@ const App = () => {
         <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
           <CodeBlockCode id="code-content">{"SELECT * FROM items WHERE title = '';"} <span style={{ color: '#989898' }}>--';</span></CodeBlockCode>
         </CodeBlock>
-        If SQL injection is not possible, no data will be returned, because no items match <b><code>'; --</code></b>, but if attack is possible, all items will be returned as we have terminated previous SQL statement early and commented out the rest of the original statement. You'll see that in this case injection is possible. We can now try to access the <code>passwords</code> table. We can try to append results from passwords table to regular items displayed in the table. UNION operator can be used to join two SELECT statements together. But be careful: both statements have to have the same number of columns. With a quick glance at the table we can assume that regular query selects 5 columns. We shall craft a query probing passwords table with 5 columns as well. For that null columns can be used.
-        <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
-          <CodeBlockCode id="code-content">{"SELECT * FROM items WHERE title = '';"} <span style={{ color: '#989898' }}>--';</span></CodeBlockCode>
+        If SQL injection is not possible, no data will be returned, because no items match <b><code>'; --</code></b>, but if attack is possible, all items will be returned as we have terminated previous SQL statement early and commented out the rest of the original statement. You'll see that in this case injection is possible. We can now try to access the <code>passwords</code> table. We can try to append results from passwords table to regular items displayed in the table. UNION operator can be used to join two SELECT statements together. But be careful: both statements have to have the same number of columns. With a quick glance at the table we can assume that regular query selects 5 columns. We shall craft a query probing passwords table with 5 columns as well. Null (empty) columns can be used for that. By searching for the following string you'll perform union on items and passwords tables:
+        <CodeBlock style={{ marginTop: 16, marginBottom: 16, textAlign: 'left' }}>
+          <CodeBlockCode id="code-content">{"' UNION SELECT *, null, null FROM passwords; --"}</CodeBlockCode>
         </CodeBlock>
+        By scrolling down you'll see now that table contains both store items and passwords, including admins password.
       </p>,
       howToPrevent: <p>
         Easiest SQL injection prevention technique is using so-called parametrized queries. Parametrized queries use placeholders in place of data which will be provided by the user. User data is automatically escapped and SQL injection attacks of this type are mitigated.
