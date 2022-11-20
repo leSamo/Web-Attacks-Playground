@@ -155,7 +155,7 @@ const App = () => {
 
         SQL injection attacks allow attackers to spoof identity, tamper with existing data, cause repudiation issues such as voiding transactions or changing balances, allow the complete disclosure of all data on the system, destroy the data or make it otherwise unavailable, and become administrators of the database server.
       </p>,
-      tryItYourself: "This is a searchable list of items in Hardware store of your rival. Try to find a way to access admin account, so you can sabotage its operations. Your gut instrincts tell you there might be a table called 'passwords' which might hide something interesting.",
+      tryItYourself: <p>This is a searchable list of items in Hardware store of your rival. Try to find a way to access admin account, so you can sabotage its operations. Your gut instincts tell you there might be a table called <code>passwords</code> which might hide something interesting.</p>,
       solution: <p>
         Search input field is missing proper input validation and therefore can be used as an attack vector. Input field contents are injected into database query regardless of its content. The query might look something like this:
         <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
@@ -172,7 +172,7 @@ const App = () => {
         By scrolling down you'll see now that table contains both store items and passwords, including admins password.
       </p>,
       howToPrevent: <p>
-        Easiest SQL injection prevention technique is using so-called parametrized queries. Parametrized queries use placeholders in place of data which will be provided by the user. User data is automatically escapped and SQL injection attacks of this type are mitigated.
+        The easiest SQL injection prevention technique is using so-called parametrized queries. Parametrized queries use placeholders in place of data which will be provided by the user. User data is automatically escaped and SQL injection attacks of this type are mitigated.
       </p>
     },
   }

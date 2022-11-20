@@ -11,7 +11,7 @@ Web app which has web vulnerabilites embedded with guides with gamification elem
 
 ### Setting up a custom PostgreSQL server
 1. Setup a PostgreSQL server with a new database
-2. Run `./src/seed.sql` to seed your database
+2. Run `./seed.sql` to seed your database
 3. In `./env` file edit `DATABASE_URL` variable to contain your [database's connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
 
 ## Start the app
