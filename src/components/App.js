@@ -61,9 +61,12 @@ const App = () => {
       numerical range for that feature.</p>,
       tryItYourself: <p>This website is missing server-side validation, try to exploit this vulnerability by registering the &quot;Cookbook website&quot; project variant</p>,
       solution: <p>This website tries to prevent students from registering project variant by disabling buttons until registration is open for everyone. However disabled buttons on the client-side can easily be enabled using the developer console by removing the <tt>disabled</tt> attribute from <tt>&lt;button&gt;</tt> element. If the reliance is completely on client-side with no server-side validation whatsoever, vulnerability might be easily exploitable.</p>,
-      howToPrevent: <p>This example highlights the importance of server-side validation as it would have prevented this exploit by checking if
-      the time is correct and throwing an error after finding out user
-      had sent the request before the registration is open.
+      howToPrevent: <p>For any security checks that are performed on the client
+      side, ensure that these checks are duplicated on the server
+      side. Attackers can bypass the client-side checks by modifying
+      values after the checks have been performed, or by changing
+      the client to remove the client-side checks entirely. Then, these
+      modified values would be submitted to the server
       </p>
     },
     "/bruteforce": {
@@ -76,7 +79,7 @@ const App = () => {
         To perform a bruteforce attack, number should be inserted
         into passcode field along with clicking the Submit button
         repeatedly. This can be performed by injecting JavaScript code
-        into the in-browser Console (in so-called DevTools), accesible by pressing F12 on the keyboard.
+        into the in-browser Console (in so-called DevTools), accessible by pressing F12 on the keyboard.
 
         In JavaScript, element can be selected using:
         <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
@@ -96,7 +99,7 @@ const App = () => {
         can be rerun if limit selected was too small. By running this
         code, all passcodes from 0 to 9999 are tried.
         <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
-          <CodeBlockCode id="code-content">{"for (let i = 0; i <= 9999; i++) {\n  document.getElementById(’password’).value = i;\n  document.getElementById(’submit’).click();\n}"}</CodeBlockCode>
+          <CodeBlockCode id="code-content">{"for (let i = 0; i <= 9999; i++) {\n  document.getElementById('password').value = i;\n  document.getElementById('submit').click();\n}"}</CodeBlockCode>
         </CodeBlock>
 
         When loop reaches iteration with <code>i = 2318</code> password is
@@ -108,7 +111,7 @@ const App = () => {
           <li>
           <b>Password strength</b> – this exploit would not have been
       possible in realistic amount of time if strong enough
-      password was chosen. It is recommended [3] to use
+      password was chosen. It is recommended to use
       combination of symbols, numbers, lower case and upper
       case characters within a password, which is at least 12
       characters long.
