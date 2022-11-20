@@ -31,6 +31,12 @@ const IndexPage = () => {
                             <li>
                                 Please use Google Chrome or Firefox browser, other browser might not work correctly.
                             </li>
+                            <li>
+                                You can reset your current attack by refreshing the page.
+                            </li>
+                            <li>
+                                Start from the beginning, tasks are ordered from the easiest to hardest.
+                            </li>
                         </ul>
                     </Text>
                 </TextContent>
