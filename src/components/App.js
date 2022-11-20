@@ -75,8 +75,50 @@ const App = () => {
         <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
           <CodeBlockCode id="code-content">{"document.getElementById('password').value = 1234;\ndocument.getElementById('submit').click();"}</CodeBlockCode>
         </CodeBlock>
+        The code above can easily be iterated over all positive
+        integers up to a limit. Limit can naturally be lifted and loop
+        can be rerun if limit selected was too small. By running this
+        code, all passcodes from 0 to 9999 are tried.
+        <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
+          <CodeBlockCode id="code-content">{"for (let i = 0; i <= 9999; i++) {\n  document.getElementById(’password’).value = i;\n  document.getElementById(’submit’).click();\n}"}</CodeBlockCode>
+        </CodeBlock>
+
+        When loop reaches iteration with <code>i = 2318</code> password is
+        guessed correctly and attacker is logged in as admin, which
+        means task has been completed successfully.
       </p>,
-      howToPrevent: <p>TODO</p>
+      howToPrevent: <p>There are multiple mitigations to this particular exploit:
+        <ul>
+          <li>
+          <b>Password strength</b> – this exploit would not have been
+      possible in realistic amount of time if strong enough
+      password was chosen. It is recommended [3] to use
+      combination of symbols, numbers, lower case and upper
+      case characters within a password, which is at least 12
+      characters long.
+          </li>
+          <li>
+          <b> Login attempt timeout or limit</b> – website could count
+      the number of unsuccessful login attempts and throttle
+      user by introducing timeouts which could exponentially
+      raise making this exploit basically impossible. Problematic users could also be inhibited by using IP address
+      blocking.
+          </li>
+          <li>      <b>Using a CAPTCHA</b> – a CAPTCHA is a program
+      that protects websites against bots by generating and
+      grading tests that humans can pass but current computer
+      programs cannot. Systems like reCAPTCHA v3 are
+      able to detect abusive behaviour without any interruption
+      to users, so they can be implemented without user friction. This test could have been mandatory for every login
+      attempt, which would make it impossible to use such a
+      simple (if any) script to repeatedly attempt logging in
+      with different password.</li>
+          <li><b>Multi-factor authentication</b> – Two-factor or multi-factor
+      authentication adds an extra layer of security to your
+      accounts. 2FA requires a user to validate their identity
+      when logging into an account before being granted access.</li>
+        </ul>
+      </p>
     },
     "/sqlInjection": {
       tabName: "SQL injection",

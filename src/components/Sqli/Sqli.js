@@ -3,8 +3,6 @@ import { TableComposable, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-tab
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-// TODO add reset search button
-
 const Sqli = () => {
     const [searchValue, setSearchValue] = useState("");
     const [items, setItems] = useState([]);
