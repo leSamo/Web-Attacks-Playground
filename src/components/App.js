@@ -33,22 +33,38 @@ const App = () => {
       attackDescription: <Fragment><p>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user.</p><p>
         An attacker can use XSS to send a malicious script to an unsuspecting user. The end user’s browser has no way to know that the script should not be trusted, and will execute the script. Because it thinks the script came from a trusted source, the malicious script can access any cookies, session tokens, or other sensitive information retained by the browser and used with that site. These scripts can even rewrite the content of the HTML page.
       </p></Fragment>,
-      tryItYourself: <p>You are on an internet discussion forum. Try to inject such JavaScipt code into the page that shows a modal window with text &quot;XSS attack&quot;.</p>,
+      tryItYourself: <p>You are on an internet discussion forum. Try to inject such JavaScript code into the page that shows a modal window with text &quot;XSS attack&quot;.</p>,
       solution: <p>This website contains a text area where users can enter a new comment and post it. It supports HTML tags so users can format their comments. Implementation of this feature is vulnerable to XSS attacks, as it does not check which HTML tags are used. In particular, script tag can be used to execute JavaScript code on other users&#39; devices. Paste the following HTML code snippet into new comment text area and submit the comment.
         <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
           <CodeBlockCode id="code-content">{"<script>alert(\"XSS attack\")</script>"}</CodeBlockCode>
         </CodeBlock>
-      This code will now execute in every user's browser when your message is loaded. Obviously this code is harmless, but what could have happened if your intents very malicious?
+      This code will now execute in every user's browser when your message is loaded. Obviously this code is harmless, but what could have happened if your intents were malicious?
         </p>,
-      howToPrevent: <p>The primary defenses against XSS are described in the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP XSS Prevention Cheat Sheet</a>. Also, it’s crucial that you turn off HTTP TRACE support on all web servers. An attacker can steal cookie data via Javascript even when document.cookie is disabled or not supported by the client. As a website developer you should keep in mind the worst case scenario. Not sanitizing webpage input, even when you trust your users, is dangerous. User input usually should generally not be interpreted as code. In the odd case it is, dangerout HTML tags, like the script tag should be escaped to prevent XSS. Using an existing library for input sanitization is usually a better idea than creating a solution by yourself.</p>
+      howToPrevent: <p>The primary defenses against XSS are described in the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP XSS Prevention Cheat Sheet</a>. Also, it’s crucial that you turn off HTTP TRACE support on all web servers. An attacker can steal cookie data via Javascript even when document.cookie is disabled or not supported by the client. As a website developer you should keep in mind the worst case scenario. Not sanitizing webpage input, even when you trust your users, is dangerous. User input should generally not be interpreted as code. In the odd case it is, dangerous HTML tags, like the script tag should be escaped to prevent XSS. Using an existing library for input sanitization is usually a better idea than creating a solution by yourself.</p>
     },
     "/missingServerSideValidation": {
       tabName: "Missing server-side validation",
       component: <Validation />,
-      attackDescription: <p>TODO</p>,
+      attackDescription: <p>When the server relies on protection mechanisms
+      placed on the client side, an attacker can modify the clientside behavior to bypass the protection mechanisms, resulting
+      in potentially unexpected interactions between the client and
+      server. The consequences will vary, depending on what the
+      mechanisms are trying to protect.
+      Input validation must always be done on the server-side
+      for security. While client side validation can be useful for
+      both functional and some security purposes it can often be
+      easily bypassed. This makes server-side validation even more
+      fundamental to security. For example, JavaScript validation
+      may alert the user that a particular field must consist of
+      numbers but the server side application must validate that the
+      submitted data only consists of numbers in the appropriate
+      numerical range for that feature.</p>,
       tryItYourself: <p>This website is missing server-side validation, try to exploit this vulnerability by registering the &quot;Cookbook website&quot; project variant</p>,
       solution: <p>This website tries to prevent students from registering project variant by disabling buttons until registration is open for everyone. However disabled buttons on the client-side can easily be enabled using the developer console by removing the <tt>disabled</tt> attribute from <tt>&lt;button&gt;</tt> element. If the reliance is completely on client-side with no server-side validation whatsoever, vulnerability might be easily exploitable.</p>,
-      howToPrevent: <p>TODO</p>
+      howToPrevent: <p>This example highlights the importance of server-side validation as it would have prevented this exploit by checking if
+      the time is correct and throwing an error after finding out user
+      had sent the request before the registration is open.
+      </p>
     },
     "/bruteforce": {
       tabName: "Bruteforce",
