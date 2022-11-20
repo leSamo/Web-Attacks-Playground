@@ -21,11 +21,11 @@ const App = () => {
       tabName: "CSRF (Cross-site request forgery)",
       component: <Csrf />,
       attackDescription: <p>Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they’re currently authenticated. With a little help of social engineering (such as sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker’s choosing. If the victim is a normal user, a successful CSRF attack can force the user to perform state changing requests like transferring funds, changing their email address, and so forth. If the victim is an administrative account, CSRF can compromise the entire web application.</p>,
-      tryItYourself: <p>You have received a suspicious e-mail which mentions that your password has been changed, but you don't remember doing that. The suspicious e-mail cointans a link "Password reset". You don't think the e-mail is legit, but you click the button out of curiosity. What could go wrong?</p>,
+      tryItYourself: <p>You have received a suspicious e-mail that mentions that your password has been changed, but you don't remember doing that. The suspicious e-mail contains a link "Password reset". You don't think the e-mail is legit, but you click the button out of curiosity. What could go wrong?</p>,
       solution: <p>Click the "Password reset" button inside the e-mail. The link redirected you to password reset page, but something is wrong.
         There is a notification telling you that password has just been changed successfully. The attacker crafted a malicious link that submitted password change request on your behalf and because you were logged into your account, the browser injected your authentification token into the request.
       </p>,
-      howToPrevent: <p>For any security checks that are performed on the client side, ensure that these checks are duplicated on the server side. Attackers can bypass the client-side checks by modifying values after the checks have been performed, or by changing the client to remove the client-side checks entirely. Then, these modified values would be submitted to the server.</p>
+      howToPrevent: <p>For any security checks that are performed on the client-side, ensure that these checks are duplicated on the server-side. Attackers can bypass the client-side checks by modifying values after the checks have been performed, or by changing the client to remove the client-side checks entirely. Then, these modified values would be submitted to the server.</p>
     },
     "/xss": {
       tabName: "XSS (Cross-site scripting)",
@@ -46,27 +46,25 @@ const App = () => {
       tabName: "Missing server-side validation",
       component: <Validation />,
       attackDescription: <p>When the server relies on protection mechanisms
-      placed on the client side, an attacker can modify the clientside behavior to bypass the protection mechanisms, resulting
+      placed on the client-side, an attacker can modify the clientside behavior to bypass the protection mechanisms, resulting
       in potentially unexpected interactions between the client and
       server. The consequences will vary, depending on what the
       mechanisms are trying to protect.
       Input validation must always be done on the server-side
-      for security. While client side validation can be useful for
+      for security. While client-side validation can be useful for
       both functional and some security purposes it can often be
       easily bypassed. This makes server-side validation even more
       fundamental to security. For example, JavaScript validation
       may alert the user that a particular field must consist of
-      numbers but the server side application must validate that the
+      numbers but the server-side application must validate that the
       submitted data only consists of numbers in the appropriate
       numerical range for that feature.</p>,
       tryItYourself: <p>This website is missing server-side validation, try to exploit this vulnerability by registering the &quot;Cookbook website&quot; project variant</p>,
       solution: <p>This website tries to prevent students from registering project variant by disabling buttons until registration is open for everyone. However disabled buttons on the client-side can easily be enabled using the developer console by removing the <tt>disabled</tt> attribute from <tt>&lt;button&gt;</tt> element. If the reliance is completely on client-side with no server-side validation whatsoever, vulnerability might be easily exploitable.</p>,
-      howToPrevent: <p>For any security checks that are performed on the client
-      side, ensure that these checks are duplicated on the server
-      side. Attackers can bypass the client-side checks by modifying
+      howToPrevent: <p>For any security checks that are performed on the client-side, ensure that these checks are duplicated on the server-side. Attackers can bypass the client-side checks by modifying
       values after the checks have been performed, or by changing
       the client to remove the client-side checks entirely. Then, these
-      modified values would be submitted to the server
+      modified values would be submitted to the server.
       </p>
     },
     "/bruteforce": {
@@ -131,7 +129,7 @@ const App = () => {
       to users, so they can be implemented without user friction. This test could have been mandatory for every login
       attempt, which would make it impossible to use such a
       simple (if any) script to repeatedly attempt logging in
-      with different password.</li>
+      with a different password.</li>
           <li><b>Multi-factor authentication</b> – Two-factor or multi-factor
       authentication adds an extra layer of security to your
       accounts. 2FA requires a user to validate their identity

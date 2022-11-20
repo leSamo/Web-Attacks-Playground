@@ -29,6 +29,7 @@ const Validation = () => {
     useEffect(() => {
         PROJECTS.forEach(({ ref }) => {
             ref.current.setAttribute('disabled', '');
+            ref.current.removeAttribute('aria-disabled');
         });
     }, []);
 
