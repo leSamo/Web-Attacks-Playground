@@ -20,12 +20,12 @@ const App = () => {
     "/csrf": {
       tabName: "CSRF (Cross-site request forgery)",
       component: <Csrf />,
-      attackDescription: <p>TODO</p>,
-      tryItYourself: <p>You have received a suspicious e-mail which mentions that your password has been changed, but you don't remember doing that.The suspicious e-mail cointans a link "Password reset". You don't think the e-mail is legit, but you click the button out of curiosity. What could go wrong?</p>,
+      attackDescription: <p>Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they’re currently authenticated. With a little help of social engineering (such as sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker’s choosing. If the victim is a normal user, a successful CSRF attack can force the user to perform state changing requests like transferring funds, changing their email address, and so forth. If the victim is an administrative account, CSRF can compromise the entire web application.</p>,
+      tryItYourself: <p>You have received a suspicious e-mail which mentions that your password has been changed, but you don't remember doing that. The suspicious e-mail cointans a link "Password reset". You don't think the e-mail is legit, but you click the button out of curiosity. What could go wrong?</p>,
       solution: <p>Click the "Password reset" button inside the e-mail. The link redirected you to password reset page, but something is wrong.
         There is a notification telling you that password has just been changed successfully. The attacker crafted a malicious link that submitted password change request on your behalf and because you were logged into your account, the browser injected your authentification token into the request.
       </p>,
-      howToPrevent: <p>TODO</p>
+      howToPrevent: <p>For any security checks that are performed on the client side, ensure that these checks are duplicated on the server side. Attackers can bypass the client-side checks by modifying values after the checks have been performed, or by changing the client to remove the client-side checks entirely. Then, these modified values would be submitted to the server.</p>
     },
     "/xss": {
       tabName: "XSS (Cross-site scripting)",
@@ -81,16 +81,38 @@ const App = () => {
     "/sqlInjection": {
       tabName: "SQL injection",
       component: <Sqli />,
-      tryItYourself: "This is a searchable list of items in Hardware store of your rival. Try to find a way to access admin account, so you can sabotage its operations.",
+      attackDescription: <p>
+        A SQL injection attack consists of insertion or “injection” of a SQL query via the input data from the client to the application. A successful SQL injection exploit can read sensitive data from the database, modify database data (Insert/Update/Delete), execute administration operations on the database (such as shutdown the DBMS), recover the content of a given file present on the DBMS file system and in some cases issue commands to the operating system. SQL injection attacks are a type of injection attack, in which SQL commands are injected into data-plane input in order to affect the execution of predefined SQL commands.
+
+        SQL injection attack occurs when:
+        <ul>
+          <li>
+            An unintended data enters a program from an untrusted source.
+          </li>
+          <li>
+            The data is used to dynamically construct a SQL query
+          </li>
+        </ul>
+
+        SQL injection attacks allow attackers to spoof identity, tamper with existing data, cause repudiation issues such as voiding transactions or changing balances, allow the complete disclosure of all data on the system, destroy the data or make it otherwise unavailable, and become administrators of the database server.
+      </p>,
+      tryItYourself: "This is a searchable list of items in Hardware store of your rival. Try to find a way to access admin account, so you can sabotage its operations. Your gut instrincts tell you there might be a table called 'passwords' which might hide something interesting.",
       solution: <p>
         Search input field is missing proper input validation and therefore can be used as an attack vector. Input field contents are injected into database query regardless of its content. The query might look something like this:
         <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
           <CodeBlockCode id="code-content">{"SELECT * FROM items WHERE title = '<USER_INPUT>';"}</CodeBlockCode>
         </CodeBlock>
-        By maliciously crafting a query we can abuse this oversight and access contents of other tables in database. Try entering <b><code>'; --</code></b> into the input field. This will malform the query into:
+        By maliciously crafting a query we can abuse this oversight and access contents of other tables in database. Keep in mind that in SQL, everything that comes after <b><code>--</code></b> is considered a comment and is ignored. Try entering <b><code>'; --</code></b> into the input field. This will malform the query into:
         <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
           <CodeBlockCode id="code-content">{"SELECT * FROM items WHERE title = '';"} <span style={{ color: '#989898' }}>--';</span></CodeBlockCode>
         </CodeBlock>
+        If SQL injection is not possible, no data will be returned, because no items match <b><code>'; --</code></b>, but if attack is possible, all items will be returned as we have terminated previous SQL statement early and commented out the rest of the original statement. You'll see that in this case injection is possible. We can now try to access the <code>passwords</code> table. We can try to append results from passwords table to regular items displayed in the table. UNION operator can be used to join two SELECT statements together. But be careful: both statements have to have the same number of columns. With a quick glance at the table we can assume that regular query selects 5 columns. We shall craft a query probing passwords table with 5 columns as well. For that null columns can be used.
+        <CodeBlock style={{ marginTop: 16, marginBottom: 16 }}>
+          <CodeBlockCode id="code-content">{"SELECT * FROM items WHERE title = '';"} <span style={{ color: '#989898' }}>--';</span></CodeBlockCode>
+        </CodeBlock>
+      </p>,
+      howToPrevent: <p>
+        Easiest SQL injection prevention technique is using so-called parametrized queries. Parametrized queries use placeholders in place of data which will be provided by the user. User data is automatically escapped and SQL injection attacks of this type are mitigated.
       </p>
     },
   }
@@ -121,7 +143,7 @@ const App = () => {
           <Route exact path={urlPath} key={index + 1}>
             <Wrapper navIndex={index + 1} paths={PATHS}>
               <Split style={{ minHeight: "100%" }}>
-                <SplitItem style={{ width: 500 }}>
+                <SplitItem style={{ width: 500, overflow: 'auto' }}>
                   <Card style={{ minHeight: "100%" }}>
                     <CardBody>
                       <TextContent>
