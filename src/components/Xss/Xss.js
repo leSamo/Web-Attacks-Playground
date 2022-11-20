@@ -15,7 +15,7 @@ const Xss = () => {
         date: "Mon Nov 18 2022 18:15:28 GMT+0100 (Central European Standard Time)"
     }, {
         username: "Josh",
-        content: "I couldn't agree more",
+        content: "<u>I couldn't agree more</u>",
         points: -1,
         hasUpvoted: false,
         hasDownvoted: false,

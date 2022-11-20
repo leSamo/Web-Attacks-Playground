@@ -37,7 +37,7 @@ const Validation = () => {
             <CardBody>
                 <TextContent>
                     <Text component="h1">
-                        Project
+                        Project variant registration
                     </Text>
                 </TextContent>
                 {registered === -1
