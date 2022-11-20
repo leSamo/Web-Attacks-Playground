@@ -204,7 +204,7 @@ const App = () => {
           <Route exact path={urlPath} key={index + 1}>
             <Wrapper navIndex={index + 1} paths={PATHS}>
               <Split style={{ minHeight: "100%" }}>
-                <SplitItem style={{ width: 500, overflow: 'auto' }}>
+                <SplitItem style={{ width: 500 }}>
                   <Card style={{ minHeight: "100%" }}>
                     <CardBody>
                       <TextContent>
