@@ -4,11 +4,11 @@ import { ArrowRightIcon } from '@patternfly/react-icons';
 
 const IndexPage = () => {
     const goToFirstVulnerability = () => {
-        window.location = "/sqlInjection";
+        window.location = "/csrf";
       }
 
     return (
-        <Card>
+        <Card style={{ height: '100%' }}>
             <CardBody>
                 <TextContent>
                     <Text component="h1">

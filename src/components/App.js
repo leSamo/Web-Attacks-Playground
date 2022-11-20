@@ -196,7 +196,7 @@ const App = () => {
                     </CardBody>
                   </Card>
                 </SplitItem>
-                <SplitItem isFilled style={{ border: "dashed 5px red", margin: 16, padding: 16 }}>
+                <SplitItem isFilled style={{ border: "dashed 5px red", margin: 16, padding: 16, overflow: 'auto' }}>
                   {component}
                 </SplitItem>
               </Split>
